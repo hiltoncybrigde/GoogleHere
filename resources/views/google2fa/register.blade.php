@@ -10,6 +10,7 @@
                 <div class="panel-body" style="text-align: center;">
                     <p>Set up your two factor authentication by scanning the barcode below. Alternatively, you can use the code {{ $secret }}</p>
                     <div>
+
                         <img src="{{ $qrImage }}">
                     </div>
                     <p>You must set up your Google Authenticator app before continuing. You will be unable to login otherwise</p>

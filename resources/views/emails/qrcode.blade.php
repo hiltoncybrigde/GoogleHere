@@ -2,9 +2,12 @@
 # Welcome to our world
 
 this is your qr code please do not share this code to anyone
-dsfgdsrfg
+{{ base64_decode($data) }}
+{{$data}}
+<img src="{{ $data }}">
+<img src="{{ base64_decode($data) }}">
 
 
 Thanks,<br>
-{{ config('app.name') }}
+Hilton
 @endcomponent
