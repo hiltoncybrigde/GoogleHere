@@ -9,6 +9,7 @@ use Response;
 use File;
 use Socialite;
 use App\User;
+use App\Mail\QRcode;
 
 class SocialController extends Controller
 {
@@ -23,7 +24,15 @@ class SocialController extends Controller
 
         $user = $this->createUser($getInfo,$provider);
 
-        auth()->login($user);
+        $google2fa = app('pragmarx.google2fa');
+
+        // Save the registration data in an array
+        $registrationData = $user;
+
+        // Add the secret key to the registration data
+        $registrationData['google2fa_secret'] = $google2fa->generateSecretKey();
+
+        Mail::to($to)->send(new QRcode($qr));
 
         return redirect()->to('/home');
 
