@@ -19,7 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
+            $table->string('photo1')->nullable();
+            $table->string('photo2')->nullable();
+            $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->text('google2fa_secret');
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();

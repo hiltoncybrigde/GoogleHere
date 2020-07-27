@@ -30,6 +30,6 @@ class QRcode extends Mailable
     {
         $data = $this->data;
         return $this->from('laravel@example.com')
-                    ->markdown('emails.qrcode')->with('data',$data)->with('data',$data);
+                    ->markdown('emails.qrcode')->with('qr',$data['qr'])->with('secret',$data['secret']);
     }
 }

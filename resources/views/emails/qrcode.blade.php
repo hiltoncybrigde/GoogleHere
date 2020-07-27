@@ -1,11 +1,13 @@
 @component('mail::message')
-# Welcome to our world
+<strong>Welcome to our world</strong>
 
-this is your qr code please do not share this code to anyone
+this is your qr code please do not share this code to anyone <br>
 
-{{$data}}
+<p>your secret key is : <strong>{{$secret}}</strong></p>
 
-<img src="{{ base64_decode($data) }}">
+
+
+<img src="{{$qr}}" alt="image">
 
 
 Thanks,<br>

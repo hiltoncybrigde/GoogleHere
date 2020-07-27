@@ -75,14 +75,17 @@ class RegisterController extends Controller
             'google2fa_secret' => $data['google2fa_secret'],
         ]);
         $qr = Session::get('qrImage');
+        $secret = Session::get('secret');
         $user = User::find($user->id)->toArray();
+        $data = [
+                'qr' => $qr,
+                'secret' => $secret,
+        ];
         $to = [
-            [
                 'email' => $user['email'], 
                 'name' => $user['name'],
-            ]
         ];
-        Mail::to($to)->send(new QRcode($qr));
+        Mail::to($to)->send(new QRcode($data));
         return redirect('/home');
     }
 
@@ -115,6 +118,7 @@ class RegisterController extends Controller
         );
 
         $request->session()->flash('qrImage', $qrImage);
+        $request->session()->flash('secret', $registrationData['google2fa_secret']);
 
         // Pass the QR barcode image to our view
         return view('google2fa.register', ['qrImage' => $qrImage, 'secret' => $registrationData['google2fa_secret']]);
