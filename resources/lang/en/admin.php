@@ -35,5 +35,6 @@ return [
     'Avatar' => 'Avatar',
     'Change' => 'Change',
     'Sort' => 'Sort',
-    'Footer' => 'Still in process'
+    'Footer' => 'Still in process',
+    'Role' => 'Role'
 ];

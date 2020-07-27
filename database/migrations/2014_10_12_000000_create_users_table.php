@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('google2fa_secret');
             $table->string('password')->nullable();
+            $table->unsignedBigInteger('role_id')->default(1);
             $table->rememberToken()->nullable();
             $table->timestamps();
         });
@@ -37,6 +38,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         Schema::dropIfExists('users');
     }
 }

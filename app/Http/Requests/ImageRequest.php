@@ -27,7 +27,8 @@ class ImageRequest extends FormRequest
             'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'email' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'address' => ['string', 'max:255','nullable'],
+            'address' => ['max:255','nullable'],
+            'role' => ['string', 'max:255','nullable'],
             'id' => 'required',
         ];
     }

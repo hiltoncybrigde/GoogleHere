@@ -49,6 +49,7 @@
                       <th scope="col">{{ __('admin.Name') }}</th>
                       <th scope="col">{{ __('admin.createAt') }}</th>
                       <th scope="col">{{ __('admin.Email') }}</th>
+                      <th scope="col">{{ __('admin.Role') }}</th>
                       <th scope="col">#</th>
                     </tr>
                   </thead>
@@ -58,6 +59,7 @@
                       <td id="display{{$user->id}}">{{$user->name}}</td>
                       <td>{{$user->created_at}}</td>
                       <td>{{$user->email}}</td>
+                      <td>{{$user->role_id}}</td>
                       <td class="text-center">
                           <button type="button" class='btn btn-info btn-xs' data-toggle="modal" data-target=".myModaluser{{$user->id}}"><span class="glyphicon glyphicon-edit"></span>{{ __('admin.Edit') }}</button>
                         @if(Auth::user()->id != $user->id)
@@ -90,7 +92,14 @@
                                 <label for="exampleInputEmail1">{{ __('admin.Email') }}</label>
                                 <input type="email" class="form-control" name="email" aria-describedby="noticeHelp" value="{{ $user->email}}" placeholder="{{$user->email}}" readonly>
                                 <label for="exampleInputEmail1">{{ __('admin.Avatar') }}</label>
-                                <input type="file" class="form-control" name="file" aria-describedby="noticeHelp" value="{{$user->name}}" placeholder="{{$user->name}}"> 
+                                <input type="file" class="form-control" name="file" aria-describedby="noticeHelp" value="{{$user->name}}" placeholder="{{$user->name}}">
+                                <label for="exampleInputEmail1">{{ __('admin.Role') }}</label> 
+                                  <select id="role" type="role" name="role" class="browser-default custom-select">
+                                    @foreach(App\Role::all() as $role)
+                                   <option value="{{$role->id}}">{{$role->name}}</option>
+                                   @endforeach
+                                 </select>
+                                 <div class="modal-footer d-flex justify-content-center">
                                 <input type="hidden" name="id" value="{{ $user->id}}">
                                 <button type="submit" class="btn btn-primary">{{ __('admin.Change') }}</button> 
                               </form>
@@ -108,7 +117,9 @@
                     @endforeach
                   </tbody>
                   </table>
-                            <div class="container">
+
+                </div>
+          <div class="container">
           <label for="page">{{ __('admin.Sort') }}</label>
           <select name="page" class="lala form-control">
             <option name="sortpage" value="a">a</option>
@@ -140,7 +151,6 @@
             <option name="sortpage"value="" selected>all</option>
           </select>
         </div>
-                </div>
             </div>
         </div>
     </div>

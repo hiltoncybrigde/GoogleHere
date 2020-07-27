@@ -35,6 +35,7 @@ return [
     'Avatar' => 'Hình đại diện',
     'Change' => 'Sửa',
     'Sort' => 'sắp xếp',
-    'Footer' => 'đang trong giai đoạn phát triễn'
+    'Footer' => 'đang trong giai đoạn phát triễn',
+    'Role' => 'Vai Trò'
 
 ];

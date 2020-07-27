@@ -117,9 +117,9 @@ class UserController extends Controller
 
             $old_image         = User::findOrFail($user->id)->photo1;
 
-            $old_image_name    = str_replace('http://10.11.13.51/storage/uploads', '', $old_image);
+            $old_image_name    = str_replace('http://full.hilton.com/storage/uploads/', '', $old_image);
 
-            $old_path          = "storage/uploads".$old_image_name;
+            $old_path          = "storage/uploads/".$old_image_name;
 
             $trunk_move        = Storage::putFileAs('public/softRemove',$old_path,$old_image_name);
 
@@ -192,6 +192,8 @@ class UserController extends Controller
 
                 'address'   =>  $data['address'],
 
+                'role_id'   => $data['role'],
+
                 'photo1'    =>  asset('storage/uploads/'.$na),
 
                 'photo2'    =>  base64_encode($data['file']),
@@ -218,10 +220,14 @@ class UserController extends Controller
 
                 'name'      =>  $data['name'],
 
+                'role_id'   => $data['role'],
+
                 'address'   =>  $data['address'],
             ]);
 
             \Log::info('update successfully without image');
+
+            $user      ->  notify(new UploadImageNotification()); 
 
             return redirect()->back();
             

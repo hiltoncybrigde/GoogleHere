@@ -349,9 +349,8 @@
 				</main>
   		</div>
   	</div>
-    @include('layouts.footer')
 </div>
-
+    @include('layouts.footer')
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
