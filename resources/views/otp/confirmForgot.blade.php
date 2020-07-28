@@ -5,29 +5,28 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Resend Your New Qr</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('2fa') }}">
+                    <form class="form-horizontal" method="POST" action="/resend">
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="one_time_password" class="col-md-4 control-label">One Time Password</label>
+                            <label for="email" class="col-md-4 control-label">What is yours email?</label>
 
                             <div class="col-md-6">
-                                <input id="one_time_password" type="number" class="form-control" name="one_time_password" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" required autofocus>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    confirm and send
                                 </button>                                
                             </div>
                         </div>
                     </form>
-                    <button><a href="/confirm-email">Forgot My OTP</a></button>
                 </div>
             </div>
         </div>

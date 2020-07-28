@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class QRcode extends Mailable
+class RemakeOTP extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,9 +29,9 @@ class QRcode extends Mailable
     public function build()
     {
         $data = $this->data;
-        return $this->from('WhatProject@gmail.com')
-                    ->markdown('emails.qrcode')
+        return $this->from('whatproject@gmail.com')
+                    ->markdown('emails.RemakeOTP')
                     ->with('qr',$data['qr'])
-                    ->with('secret',$data['secret']);
+                    ->with('secret',$data['secret']);;
     }
 }

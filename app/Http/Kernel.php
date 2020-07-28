@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
         'langugue' => \App\Http\Middleware\LanguageChange::class,
+        'CheckRole' => \App\Http\Middleware\CheckRole::class,
     ];
 }

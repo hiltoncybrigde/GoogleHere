@@ -117,6 +117,8 @@ class UserController extends Controller
 
             $old_image         = User::findOrFail($user->id)->photo1;
 
+            dd($old_image);
+
             $old_image_name    = str_replace('http://full.hilton.com/storage/uploads/', '', $old_image);
 
             $old_path          = "storage/uploads/".$old_image_name;

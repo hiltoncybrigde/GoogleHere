@@ -10,9 +10,11 @@ use File;
 use Socialite;
 use App\User;
 use App\Mail\QRcode;
+use App\Mail\RemakeOTP;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
-
+use Auth;
+use App\Notifications\NewUserNotification;
 class SocialController extends Controller
 {
     public function redirect ($provider)
@@ -47,6 +49,7 @@ class SocialController extends Controller
             ];
 
             Mail::to($user)->send(new QRcode($data));
+            $user->notify(new NewUserNotification()); 
 
             Auth()->login($user);
         }
@@ -54,6 +57,37 @@ class SocialController extends Controller
         return redirect()->to('/home');
 
     }
+
+    public function confirmRemake () {
+        return view('otp.confirmForgot');
+    }
+
+    public function remakeOTP (Request $request)
+    {
+        $data = $request->all();
+        $google2fa = app('pragmarx.google2fa');
+        $user = User::where('id' ,'=',Auth::user()->id)->first();
+
+        if ($user != null && Auth::user()->email == $data['email']) {
+            $secretKey = $google2fa->generateSecretKey();
+            $user['google2fa_secret'] = $secretKey;
+            $user->save();
+            $qr = $google2fa->getQRCodeInline(
+                    config('app.name'),
+                    $user['email'],
+                    $user['google2fa_secret']
+                );
+            $data = [
+                    'qr' => $qr,
+                    'secret' => $user['google2fa_secret'],
+            ];
+            Mail::to($user)->send(new RemakeOTP($data));
+            return redirect()->to('/login');
+        }
+            return view('otp.makeNewAccount');
+    }
+
+
 
     function createUser ($getInfo,$provider,$secret_key) 
     {

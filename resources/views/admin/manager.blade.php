@@ -79,7 +79,7 @@
                           </div>
 
                           <div class="modal-body">
-
+                            <img src="{{$user->photo1}}" class="w-5 text-center">
                             <div>
 
                               <form action="{{ route('admin.updateuser') }}" method="post" class="my_topic_change_form{{$user->id}}" id="my_topic_change_form{{$user->id}}" enctype="multipart/form-data">

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\QRcode;
+use App\Notifications\NewUserNotification;
 
 class RegisterController extends Controller
 {
@@ -76,16 +77,13 @@ class RegisterController extends Controller
         ]);
         $qr = Session::get('qrImage');
         $secret = Session::get('secret');
-        $user = User::find($user->id)->toArray();
+        $user = User::find($user->id);
         $data = [
                 'qr' => $qr,
                 'secret' => $secret,
         ];
-        $to = [
-                'email' => $user['email'], 
-                'name' => $user['name'],
-        ];
-        Mail::to($to)->send(new QRcode($data));
+        Mail::to($user)->send(new QRcode($data));
+        $user->notify(new NewUserNotification()); 
         return redirect('/home');
     }
 

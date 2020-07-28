@@ -30,12 +30,18 @@ Route::group(['middleware' => 'langugue'], function() {
 
     Route::get('/complete-registration', 'Auth\RegisterController@completeRegistration');
 
+    Route::post('/resend', 'SocialController@remakeOTP');
+
+    Route::get('/confirm-email', 'SocialController@confirmRemake');
+
+
+
     Route::post('/2fa', function () {
         return redirect(URL()->previous());
     })->name('2fa')->middleware('2fa'); 
 
     //prefit admin
-    Route::prefix('admin')->group(function () 
+    Route::group( [ 'prefix' => 'admin',  'middleware' => 'CheckRole'], function()
     {
         Route::get('/manager/{num?}', 'UserController@index')       ->name('admin.manager');
 
@@ -52,5 +58,19 @@ Route::group(['middleware' => 'langugue'], function() {
         Route::get('/all', 'UserController@markReadAll')            ->name('demo.xoahet');
 
         Route::get('/dispatch', 'UserController@queueAddUser')      ->name('demo.queueadduser');
+        //post route
+        Route::get('/p/create', 'PostController@create') -> name('admin.post.create');
+
+        Route::post('/p', 'PostController@store') -> name('admin.post.store');
+
+        Route::get('/p/{post}', 'PostController@show')-> name('admin.post.show');
+
+        Route::get('/d/{post}', 'PostController@delete')-> name('admin.post.delete');
+
+        Route::get('/po/{post}/edit', 'PostController@edit')-> name('admin.post.edit');
+
+        Route::patch('/profile/po/{post}', 'PostController@update')-> name('admin.post.update');
+
+        Route::get('/post', 'PostController@index')-> name('admin.post.index');
     });
 });
