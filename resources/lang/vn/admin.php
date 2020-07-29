@@ -36,6 +36,16 @@ return [
     'Change' => 'Sửa',
     'Sort' => 'sắp xếp',
     'Footer' => 'đang trong giai đoạn phát triễn',
-    'Role' => 'Vai Trò'
+    'Role' => 'Vai Trò',
+    'post' => 'Bài Viết',
+    'newPost' => 'Bài viết mới',
+    'title' => 'Tiêu đề',
+    'des' => 'Mô tả',
+    'category' => 'Danh Mục',
+    'Postpost' => 'Đăng bài',
+    'id'=>'Id',
+    'name' => 'Tên',
+    'number' => 'Số lượng bài viết',
+
 
 ];

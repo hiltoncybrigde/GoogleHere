@@ -36,5 +36,14 @@ return [
     'Change' => 'Change',
     'Sort' => 'Sort',
     'Footer' => 'Still in process',
-    'Role' => 'Role'
+    'Role' => 'Role',
+    'post' => 'Post',
+    'newPost' => 'New Post',
+    'title' => 'Title',
+    'des' => 'Description',
+    'category' => 'Category',
+    'Postpost' => 'Post',
+    'id'=>'id',
+    'name' => 'Name',
+    'number' => 'Number of the posts',
 ];

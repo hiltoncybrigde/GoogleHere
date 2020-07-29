@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use DB;
+use auth;
 
 class PostController extends Controller
 {
@@ -32,18 +33,18 @@ class PostController extends Controller
     {
       return view('admin.post.create');
     }
-    public function store(Request $request){
-      dd($request->all());
-      $data = $request()->validate([
-        'title' => 'required',
-        'des' => 'required',
-        'category' => 'required',
-      ]);
+    public function store(Request $request) 
+    {
 
+      $data = $request->validate([
+        'title' => 'required','string',
+        'des' => 'required','string',
+        'category_id' => 'required',
+      ]);
       auth()->user()->posts()->create([
         'title' => $data['title'],
         'des' => $data['des'],
-        'category_id' => $data['category'],
+        'category_id' => $data['category_id'],
       ]);
 
       return redirect()->back();
@@ -60,8 +61,8 @@ class PostController extends Controller
     {
       
       $post = Post::findOrFail($post);
-      if(auth::user()->roles()->first() != null){
-      if (Auth()->user()->id == $post->user_id || auth::user()->roles->first()->name == "admin" || auth::user()->username == "Lam Thai Gia Huy") {
+      if(auth::user()->role != null){
+      if (Auth()->user()->id == $post->user_id || auth::user()->role->name == "admin" || auth::user()->email == "benjaminlam1202@gmail.com") {
         $post->delete();
         return redirect()->back();
       } else{
@@ -82,7 +83,7 @@ class PostController extends Controller
     public function edit(\App\Post $post)
     {
       
-      if (Auth()->user()->id == $post->user_id) {
+      if (Auth()->user()->id == $post->user_id || auth::user()->role->name == "admin") {
         return view('admin.post.edit', compact('post'));
       } else{
         abort(403, 'Unauthorized action.');
@@ -90,24 +91,22 @@ class PostController extends Controller
       }
     }
 
-    public function update(\App\Post $post)
+    public function update(\App\Post $post,Request $request)
     {
-     
-      if (Auth()->user()->id == $post->user_id) {
-        $data = request()->validate([
-          'title' =>'',
-          'des' => '',
+
+      if (Auth()->user()->id == $post->user_id || auth::user()->role->name == "admin") {
+
+        $data = $request->validate([
+          'title' => 'required','string',
+          'des' => 'required','string',
+        ]);
+        $post->update([
+            'title' => $data['title'],
+            'des' => $data['des'],
         ]);
 
 
-        $post->title = request('title');
-        $post->des = request('des');
-        $post->save();
-
-
-
-
-        return redirect("/profile/{$post->user ->id}");
+        return redirect('/admin/post');
       } else{
         abort(403, 'Unauthorized action.');
         return redirect('/')->with('status', 'Not Authorized!');

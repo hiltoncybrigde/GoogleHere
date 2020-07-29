@@ -251,6 +251,13 @@
 	  				<li class="nav-item">
 	  					<a href="{{ route('admin.manager') }}" class="nav-links d-block"><i class="fa fa-user-plus"></i> {{ __('admin.manager') }}</a>
 	  				</li>
+            <li class="nav-item">
+              <a href="{{ route('admin.post.index') }}" class="nav-links d-block"><i class="fa fa-newspaper-o"></i> {{ __('admin.post') }}</a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="{{ route('admin.category.index') }}" class="nav-links d-block"><i class="fa fa-book" aria-hidden="true"></i> {{ __('admin.category') }}</a>
+            </li>
             
               <li>
                 <hr>
@@ -319,6 +326,16 @@
 					<a href="{{ route('admin.manager') }}" class="set-width text-center display-inline-block my-1"><span style="color: #96201E;"><i class="fa fa-user-plus"></i></span></a>
           <small>{{ __('admin.manager') }}</small>
 				</div>
+
+        <div class="icons d-flex flex-column align-items-center">
+          <a href="{{ route('admin.post.index') }}" class="set-width text-center display-inline-block my-1"><span style="color: #96201E;"><i class="fa fa-newspaper-o"></i></span></a>
+          <small>{{ __('admin.post') }}</small>
+        </div>
+
+        <div class="icons d-flex flex-column align-items-center">
+          <a href="{{ route('admin.category.index') }}" class="set-width text-center display-inline-block my-1"><span style="color: #96201E;"><i class="fa fa-book" aria-hidden="true"></i></span></a>
+          <small>{{ __('admin.category') }}</small>
+        </div>
 
           <hr>
         <div class="side-bar-logo text-center py-3">

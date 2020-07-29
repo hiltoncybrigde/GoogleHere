@@ -69,8 +69,12 @@ Route::group(['middleware' => 'langugue'], function() {
 
         Route::get('/po/{post}/edit', 'PostController@edit')-> name('admin.post.edit');
 
-        Route::patch('/profile/po/{post}', 'PostController@update')-> name('admin.post.update');
+        Route::post('/po/{post}', 'PostController@update')-> name('admin.post.update');
 
         Route::get('/post', 'PostController@index')-> name('admin.post.index');
+
+        Route::get('/category', 'CategoryController@index')-> name('admin.category.index');
+
+
     });
 });
