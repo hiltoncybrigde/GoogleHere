@@ -69,7 +69,7 @@ MAIL_PASSWORD=<YOUR-PASSWORD>
 MAIL_ENCRYPTION=<TYPE-OF-ENCRYTION>
 MAIL_FROM_NAME="${APP_NAME}"
 ```
-![Notice](https://via.placeholder.com/150/FF0000/FFFFFF?Text=Notice)
+![Notice](https://via.placeholder.com/15/f03c15/000000?text=+)
 if you using gmail , you cannot view qr code at least if you deloy the page to actual .com domain . So the solution is that we using mailtrap for testing
 
 config this in config\service.php 
