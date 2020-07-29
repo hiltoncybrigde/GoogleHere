@@ -1,17 +1,17 @@
-# Project Title
+# What?Choose
 
-One Paragraph of project description goes here
+this project will be my first project to build a free social to help people to make their choose if they cannot decide what they want , social friend will do it for them
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+this project is running using laravel and this is indivitual project not getting and reponser or request by anyone 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+this project is running using laravel framework so what you need to do is install everything with a laravel project environtment need and also composer
 
 ```
-Give examples
+https://laravel.com/docs/7.x
 ```
 ### Installing
 
@@ -69,7 +69,7 @@ MAIL_PASSWORD=<YOUR-PASSWORD>
 MAIL_ENCRYPTION=<TYPE-OF-ENCRYTION>
 MAIL_FROM_NAME="${APP_NAME}"
 ```
-![Notice](https://via.placeholder.com/15/f03c15/000000?text=+) 
+![Notice](https://via.placeholder.com/150/FF0000/FFFFFF?Text=Notice)
 if you using gmail , you cannot view qr code at least if you deloy the page to actual .com domain . So the solution is that we using mailtrap for testing
 
 config this in config\service.php 
